@@ -38,7 +38,7 @@ https://github.com/elplatt/seltzer
 
 ## Wiring schema ##
 
-<img src="https://github.com/PrishtinaHackerspace/HACCSY/raw/master/schema.jpg" align="center" width="50%" alt="Schema" /><br />
+<img src="https://github.com/PrishtinaHackerspace/HACCSY/raw/master/schema.jpg" align="center" width="100%" alt="Schema" /><br />
 Credits: Dijon Vula - dijonvula@gmail.com
 
 ## Installation ##
