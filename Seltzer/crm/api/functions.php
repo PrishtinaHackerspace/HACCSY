@@ -31,7 +31,7 @@ function getMemberInfoByRFID($rfid,$fieldNames)
 
   if($fieldNames == "")
   {
-  	$fieldNames = "*";
+	$fieldNames = "*";
   }
 
   //first build the query
@@ -75,7 +75,7 @@ function getMemberLastPaymentTimestamp($rfid)
 
   if($keyRow == 0)
   {
-  	return array("ERROR"=>"No key found for RFID: " . $rfid);
+	return array("ERROR"=>"No key found for RFID: " . $rfid);
   }
 
   //then get the last payment entered for this member
@@ -90,7 +90,7 @@ function getMemberLastPaymentTimestamp($rfid)
   
   if($timestamp == NULL)
   {
-  	return array("ERROR"=>"No payments found for key owner.");
+	return array("ERROR"=>"No payments found for key owner.");
   }
   
   $iso8601 = date('c', $timestamp);
@@ -117,20 +117,20 @@ function getRFIDWhitelist()
 		$firstName = $memberData[0]["contact"]["firstName"];
 		$lastName = $memberData[0]["contact"]["lastName"];
 		$memberBalance = $bal['value'] / 100;
-        if ($memberBalance <= ($planAmount * 2) || $memberBalance == 0) {
-            //this member has paid their dues. Add to whitelist.
-            //get their key serial and add that too!
-            $query = "SELECT serial FROM `key` WHERE char_length(serial) > 5 and cid = " . $cid;
-            $result = mysqli_query($con, $query) 
-		  		or die(json_encode(array("getRFIDWhitelistQueryERROR"=>mysqli_error($con))));
-            $r = mysqli_fetch_assoc($result);
-            $serial = $r["serial"];
-            if ($serial != NULL)
-            {
-				$whiteList[] = array("firstName"=>$firstName,"lastName"=>$lastName,"serial"=>$serial);	
+		if ($memberBalance <= ($planAmount * 2) || $memberBalance == 0) {
+			//this member has paid their dues. Add to whitelist.
+			//get their key serial and add that too!
+			$query = "SELECT serial FROM `key` WHERE char_length(serial) > 5 and cid = " . $cid;
+			$result = mysqli_query($con, $query) 
+				or die(json_encode(array("getRFIDWhitelistQueryERROR"=>mysqli_error($con))));
+			$r = mysqli_fetch_assoc($result);
+			$serial = $r["serial"];
+			if ($serial != NULL)
+			{
+				$whiteList[] = array("firstName"=>$firstName,"lastName"=>$lastName,"serial"=>$serial);  
 			}
-        }
-    }
+		}
+	}
 	
 	return $whiteList;
 }
@@ -158,17 +158,17 @@ function doorLockCheck($rfid)
 	$result = mysqli_query($con, $query) 
 		  or die(json_encode(array("doorLockCheckQueryERROR"=>mysqli_error($con))));
  
- 	//if no rows returned then that key wasn't even found in the DB
- 	if(mysqli_num_rows($result) == 0)
- 	{
- 		$jsonResponse = array("key " . $rfid . " not found in db");
+	//if no rows returned then that key wasn't even found in the DB
+	if(mysqli_num_rows($result) == 0)
+	{
+		$jsonResponse = array("key " . $rfid . " not found in db");
 	}
- 	else
- 	{		
-	 	$row = mysqli_fetch_assoc($result); 	
-	 	
-	 	$memberID = $row["cid"];
-	 	$planPrice = $row["price"];
+	else
+	{       
+		$row = mysqli_fetch_assoc($result);     
+		
+		$memberID = $row["cid"];
+		$planPrice = $row["price"];
 		
 		$accountData = payment_accounts(array("cid" => $memberID));
 		//{"2":{"credit":"2","code":"USD","value":5000}}
@@ -209,9 +209,9 @@ function getActiveMembersNames()
 
 	$query = "SELECT firstName FROM contact WHERE active = '1'";
 
-  	$result = mysqli_query($con, $query) 
+	$result = mysqli_query($con, $query) 
 		  or die(json_encode(array("getActiveMembersNames" => mysql_error())));
-  	$array = array();
+	$array = array();
 
 	$i=0;
 	while($row = mysqli_fetch_array($result)) {
@@ -223,7 +223,7 @@ function getActiveMembersNames()
 	$var="";
 	for ($item=0 ; $item<$i ; $item++)
 	{
-	    $var.=$array[$item];
+		$var.=$array[$item];
 	}
 	return $var;
 }
@@ -238,7 +238,7 @@ function getActiveMembersTotal()
 	$query = "SELECT COUNT(*) AS count FROM contact WHERE active = '1'";
 
 	//then get the matching members
-  	$result = mysqli_query($con, $query) 
+	$result = mysqli_query($con, $query) 
 		  or die(json_encode(array("getActiveMembersTotal" => mysql_error())));
 
 	$row = mysqli_fetch_array($result);
@@ -258,7 +258,7 @@ function createLog($contactId, $currentDate)
 		return mysqli_error($con);
 	}else{
 		return true;
-	}		
+	}       
 
 }
 
@@ -275,7 +275,7 @@ function updateLog($contactId, $currentDate, $contactLastCheckinTime)
 		return mysqli_error($con);
 	}else{
 		return true;
-	}		
+	}       
 
 }
 
@@ -289,14 +289,14 @@ function updateContactCheckinStatus($date, $userId, $active)
 	if ($active == 1) {
 		$query = "UPDATE contact SET active=$active, last_checkin_time='$date' WHERE cid='$userId'";
 	}else{
-	 	$query = "UPDATE contact SET active=$active, last_checkout_time='$date' WHERE cid='$userId'";
+		$query = "UPDATE contact SET active=$active, last_checkout_time='$date' WHERE cid='$userId'";
 	}
 
 	if (!mysqli_query($con,$query)) {
 		return mysqli_error($con);
 	}else{
 		return true;
-	}		
+	}       
 }
 
 
@@ -317,22 +317,22 @@ function isUserCheckedIn($rfid)
 	$result = mysqli_query($con, $query) 
 		  or die(json_encode(array("isUserCheckedInERROR"=>mysqli_error($con))));
  
- 	//if no rows returned then that key wasn't even found in the DB
- 	if(mysqli_num_rows($result) == 0)
- 	{
- 		$jsonResponse = array("key " . $rfid . " not found in db");
+	//if no rows returned then that key wasn't even found in the DB
+	if(mysqli_num_rows($result) == 0)
+	{
+		$jsonResponse = array("key " . $rfid . " not found in db");
 	}
- 	else
- 	{		
-	 	$row = mysqli_fetch_assoc($result); 	
-	 	
-	 	$checkinStatus = $row["active"];
+	else
+	{       
+		$row = mysqli_fetch_assoc($result);     
+		
+		$checkinStatus = $row["active"];
 
-	 	if ($checkinStatus == 0) {
-	 		$jsonResponse = array("False");
-	 	}else{
-	 		$jsonResponse = array("True");
-	 	}
+		if ($checkinStatus == 0) {
+			$jsonResponse = array("False");
+		}else{
+			$jsonResponse = array("True");
+		}
 	}
 	
 	return $jsonResponse;
@@ -363,7 +363,7 @@ function processCheckIn($rfid)
 
 					$errors = 1;
 					$processCheckInMessage .= 'Could not update member status when checking in!';
-			  		die();
+					die();
 				}else{
 					$processCheckInMessage .= "Checkin successful!";
 				}
@@ -379,7 +379,7 @@ function processCheckIn($rfid)
 				if (!updateLog(getMemberInfoByRFID($rfid, "c.cid")["cid"], $date, getMemberInfoByRFID($rfid, "c.last_checkin_time")["last_checkin_time"])) { // close log, insert checkout time (current date time)
 					$errors = 1;
 					$processCheckInMessage .= 'Could not close the log for user check out!';
-			  		die();
+					die();
 				}else{
 					$processCheckInMessage .= "Checkout successful!";
 				}
@@ -413,21 +413,21 @@ function processCheckIn($rfid)
 
 function hackerspaceStatus()
 {
-    $names = Array('Goddesses on Throne', 'Aliens', 'Nyan cats', 'Unicorns', 'Capacitors', 'Ghosts', 'Resistors', 'Astronauts','Code Knights','Serfs','Guardians','Haluca');
+	$names = Array('Goddesses on Throne', 'Aliens', 'Nyan cats', 'Unicorns', 'Capacitors', 'Ghosts', 'Resistors', 'Astronauts','Code Knights','Serfs','Guardians','Haluca');
 
-    if ((int)getActiveMembersTotal() == 1) {
+	if ((int)getActiveMembersTotal() == 1) {
 
-    	$message = getActiveMembersTotal().' Hacker and '.rand(2, 5).' '.$names[array_rand($names)].' in the space, means that the hackerspace is now open!';
+		$message = getActiveMembersTotal().' Hacker and '.rand(2, 5).' '.$names[array_rand($names)].' in the space, means that the hackerspace is now open!';
 
-    }elseif((int)getActiveMembersTotal() > 1){
+	}elseif((int)getActiveMembersTotal() > 1){
 
 		$message = getActiveMembersTotal().' Hackers and '.rand(2, 5).' '.$names[array_rand($names)].' in the space, means that the hackerspace is now open!';
 
-    }else{
+	}else{
 
-    	$message = '0 Hackers and '.rand(2, 5).' '.$names[array_rand($names)].'  in the space, means that the hackerspace is now closed!';
+		$message = '0 Hackers and '.rand(2, 5).' '.$names[array_rand($names)].'  in the space, means that the hackerspace is now closed!';
 
-    }
+	}
 
 
 	$response['hackersInSpace'] = (int)getActiveMembersTotal();
@@ -441,9 +441,9 @@ function hackerspaceStatus()
 //////////////////////////////////////
 //other functions for service go here. 
 // don't forget to add the action to the 
-// $possible_url array below!!!!!
+// $possible_url array in query.php file!!!!!
 //You will then have to add the entry for
-// the switch case in query.php as well.
+// the switch case in as well.
 //////////////////////////////////////
 
 ?>
