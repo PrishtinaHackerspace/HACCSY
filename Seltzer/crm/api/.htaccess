@@ -1,0 +1,10 @@
+AuthName "Restricted Area" 
+
+AuthType Basic 
+
+AuthUserFile /PATHTOSELTZERDIR/api/.htpasswd
+# Username and password by default in .htpasswd are admin:admin 
+
+AuthGroupFile /dev/null
+
+require valid-user
