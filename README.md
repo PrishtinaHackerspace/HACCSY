@@ -71,6 +71,38 @@ add this to the end of the cron:
 
 	@reboot python /home/pi/HACCSY.py & python /home/pi/UpdateWhiteList.py & python /home/pi/Watchdog.py &
 	@reboot bash /home/pi/WifiTest.sh
+	
+then save and exit and reboot the pi
 
+If you're using a Wifi USB adapter, edit /etc/network/interfaces/ and at the wlan0 configuration add
+	allow-hotplug wlan0
+	#and
+	wireless-power off
+	
+Your configuration should look somewhat like this:
+	auto lo
+	iface lo inet loopback
+
+	iface etho0 dhcp
+	auto eth0
+	allow-hotplug eth0
+	iface eth0 inet manual
+
+	auto wlan0
+	allow-hotplug wlan0
+	iface wlan0 inet dhcp
+	wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+	wireless-power off
+
+Here's another tweak for the power management configuration<br />
+Create a new file:
+	sudo nano /etc/modprobe.d/8192cu.conf
+add
+	options 8192cu rtw_power_mgnt=0 rtw_enusbss=0
 then save and exit and reboot the pi.
+
+The following should output 0 after reboot
+	cat /sys/module/8192cu/parameters/rtw_power_mgnt
+
+
 
