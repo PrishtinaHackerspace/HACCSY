@@ -96,12 +96,17 @@ Your configuration should look somewhat like this:
 
 Here's another tweak for the power management configuration<br />
 Create a new file:
+
 	sudo nano /etc/modprobe.d/8192cu.conf
+
 add
+
 	options 8192cu rtw_power_mgnt=0 rtw_enusbss=0
+
 then save and exit and reboot the pi.
 
 The following should output 0 after reboot
+
 	cat /sys/module/8192cu/parameters/rtw_power_mgnt
 
 
