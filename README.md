@@ -53,6 +53,10 @@ If you don't want it to interface with Seltzer you could take out the part that 
 
 	[{"firstName":"Josh","lastName":"Pritt","serial":"8045AB453449"},{"firstName":"Tony","lastName":"Bellomo","serial":"6554557774BC"},{"firstName":"Arlo","lastName":"Del Rosario","serial":"4944D8938D11"}]
 
+Then make sure to create the new tables and new columns by importing the update.sql file via phpmyadmin to your seltzer database.
+
+See the documentation here for more detailed steps: https://github.com/PrishtinaHackerspace/HACCSY/tree/master/Seltzer/crm/api
+
 There are several variables to set.  They are all at the top and usually are ALL CAPS.  Change these values if you need to such as the USERNAME and PASSWORD for your email server or HTTPAuth authenticating with htaccess when using REST API.
 
 You need to run a few commands on the Raspberry Pi command line (terminal) to get it to run the Python scripts correctly.
