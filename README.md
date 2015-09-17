@@ -39,7 +39,8 @@ https://github.com/elplatt/seltzer
 ## Wiring schema ##
 
 <img src="https://github.com/PrishtinaHackerspace/HACCSY/raw/master/schema.jpg" align="center" width="100%" alt="Schema" /><br />
-Credits: Dijon Vula - dijonvula@gmail.com
+Credits: Dijon Vula - dijonvula@gmail.com<br/>
+***Note***: We will update the shcema soon, until then, please use a Snubber or an <a href="http://i.imgur.com/tChKv.png">reverse-biased diode</a> at the electric strike lock to eliminate any noise / inductive kick in the circuit - this usually affects the LCD screen and will make it display scrambled characters.
 
 ## Installation ##
 
