@@ -40,7 +40,8 @@ https://github.com/elplatt/seltzer
 
 <img src="https://github.com/PrishtinaHackerspace/HACCSY/raw/master/schema.jpg" align="center" width="100%" alt="Schema" /><br />
 Credits: Dijon Vula - dijonvula@gmail.com<br/>
-***Note***: We will update the shcema soon, until then, please use a Snubber or an <a href="http://i.imgur.com/tChKv.png">reverse-biased diode</a> at the electric strike lock to eliminate any noise / inductive kick in the circuit - this usually affects the LCD screen and will make it display scrambled characters.
+
+***Note***: We will update the schema soon, until then, please use a Snubber or an <a href="http://i.imgur.com/tChKv.png">reverse-biased diode</a> at the electric strike lock to eliminate any noise / inductive kick in the circuit - this usually affects the LCD screen and will make it display scrambled characters.
 
 ## Installation ##
 
@@ -76,11 +77,13 @@ add this to the end of the cron:
 then save and exit and reboot the pi
 
 If you're using a Wifi USB adapter, edit /etc/network/interfaces/ and at the wlan0 configuration add
+
 	allow-hotplug wlan0
 	#and
 	wireless-power off
 	
 Your configuration should look somewhat like this:
+
 	auto lo
 	iface lo inet loopback
 
