@@ -2,7 +2,7 @@
 ////////////////////////////////
 //This is the REST web service that will give back info from the Seltzer DB.
 ////////////////////////////////
-//Altin Ukshini  ramgarden@gmail.com
+//Altin Ukshini  altin.ukshini@gmail.com
 //Created: Sep 20, 2015
 
 // header("Content-Type:application/json");
