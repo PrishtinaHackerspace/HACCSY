@@ -1,7 +1,7 @@
 HACCSY
 ========
 
-HACCSY abreviation stands for Hackerspace Access Control and Checkin System and that's pretty much what it does.
+HACCSY abbreviation stands for Hackerspace Access Control and Checkin System and that's pretty much what it does.
 
 HACCSY app is meant to run on a RaspberryPi that’s connected to internet and the front door electric strike lock. It does the job of a simple Check in System and Door Access Control System (2 in 1), it queries a REST service by handing it the scanned in RFID card reader and it will return ‘true’ if the key owner owes less than 2 months worth of their monthly payment. It will return ‘false’ otherwise. It does the same for checking in and out. The computer would then send the signal to the door lock actuator to open it if returned true or do nothing if false. It has a check IN/OUT button to indicate Check IN or Check OUT. It also has an LCD backlight display that displays messages for the user, and an RGB LED that turns RED for Access Denied, GREEN for Access Granted and WHITE to indicate offline mode. Through the REST API, you can also make it available for others to see if the hackerspace is open or not. See working example on the website header at www.prishtinahackerspace.org
 
